@@ -9,12 +9,20 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Identifier Number (NRP) -->
+        <div class="mt-4">
+            <x-input-label for="identifier_number" :value="__('Identifier Number')" />
+            <x-text-input id="identifier_number" class="block mt-1 w-full" type="number" max_length="10" name="identifier_number" :value="old('identifier_number')" required />
+            <x-input-error :messages="$errors->get('identifier_number')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+
 
         <!-- Password -->
         <div class="mt-4">

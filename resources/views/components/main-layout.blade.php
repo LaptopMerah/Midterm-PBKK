@@ -8,17 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $webTitle }} | SiASDOSPADU</title>
+    <title>{{ $webTitle }} | SiAsdosPadu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    
+    @include('sweetalert::alert')
+
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="font-jakarta-sans">
     <x-navbar/>
-    <div class="container mx-10 px-2">
+    <div class="mx-10 px-2">
         {{ $slot }}
-    </body>
     </div>
+</body>
 </html>
