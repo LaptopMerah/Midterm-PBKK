@@ -7,6 +7,7 @@ use App\Models\CourseClass;
 use App\Models\TeachingAssistant;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTeachingAssistantRequest;
 use App\Http\Requests\UpdateTeachingAssistantRequest;
 
@@ -18,12 +19,12 @@ class TeachingAssistantController extends Controller
      */
     public function index()
     {
-        $registrations = TeachingAssistant::where('user_id', auth()->user()->id)->get();
+        $registrations = TeachingAssistant::where('user_id', Auth::id())->get();
         return view('dashboard.student.registration.index', compact('registrations'));
     }
 
     public function lectureTeachingAssistantIndex(){
-        $data = User::where('id',auth()->user()->id)->firstOrFail();
+        $data = User::where('id', Auth::id())->firstOrFail();
 
         dd($data->lecturer_class);
     }

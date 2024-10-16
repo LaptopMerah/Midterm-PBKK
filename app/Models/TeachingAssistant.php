@@ -39,7 +39,7 @@ class TeachingAssistant extends Model
     public function ta_logs(): HasMany
     {
         return $this->hasMany(
-            TeachingAssistant::class,
+            TeachingAssistantLog::class,
             'teaching_assistant_id',
             'id'
         );

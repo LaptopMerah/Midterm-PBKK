@@ -2,10 +2,12 @@
 
 use App\Enums\UserType;
 use App\Http\Controllers\CourseClassController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TeachingAssistantController;
-use App\Http\Controllers\UserManagementController;
+use App\Models\TeachingAssistantLog;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\TeachingAssistantController;
+use App\Http\Controllers\TeachingAssistantLogController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +39,9 @@ Route::middleware(['auth', 'user_type:student'])->prefix('student')->group(funct
         return view('dashboard.student.index');
     })->name('student.dashboard');
     route::resource('/teaching-assistant-registration', TeachingAssistantController::class)->names('student.ta-registration');
+    Route::resource('/teaching-assistant-log', TeachingAssistantLogController::class)->names('student.ta-log');
+    Route::get('/teaching-assistant-log/{teaching_assistant}/data', [TeachingAssistantLogController::class, 'data'])->name('student.ta-log.data');;
+    Route::get('/teaching-assistant-log/{teaching_assistant}/create', [TeachingAssistantLogController::class, 'create'])->name('student.ta-log.create');
 });
 
 Route::middleware(['auth', 'user_type:operator'])->prefix('operator')->group(function () {

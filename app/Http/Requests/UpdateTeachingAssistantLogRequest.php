@@ -11,7 +11,7 @@ class UpdateTeachingAssistantLogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateTeachingAssistantLogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'teaching_assistant_id' => ['required', 'exists:teaching_assistants,id'],
+            'week' => ['required', 'numeric', 'between:1,16'],
+            'date' => ['required', 'date'],
+            'description' => ['required', 'string'],
         ];
     }
 }
