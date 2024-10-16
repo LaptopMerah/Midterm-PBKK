@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
         }
         return redirect()->intended(route('operator.dashboard', absolute: false));
     })->name('dashboard');
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -54,7 +55,7 @@ Route::middleware(['auth', 'user_type:operator'])->prefix('operator')->group(fun
     Route::post('/class/add-lecture-to-class',[CourseClassController::class,'storeLecture'])->name('add.lecture');
     Route::get('/class/add-lecture-to-class/{course_class:id}',[CourseClassController::class,'editLecture'])->name('edit.lecture');
     Route::put('/class/add-lecture-to-class/{course_class:id}',[CourseClassController::class,'updateLecturer'])->name('update.lecture');
-    Route::resource('class',\App\Http\Controllers\CourseClassController::class)->names('operator.class')->except('show');
+    Route::resource('class', CourseClassController::class)->names('operator.class')->except('show');
 
 });
 
