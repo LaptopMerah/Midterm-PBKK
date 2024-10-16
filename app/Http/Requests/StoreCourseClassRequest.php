@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\DayType;
 use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCourseClassRequest extends FormRequest
 {
@@ -12,7 +14,7 @@ class StoreCourseClassRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user_type == UserType::LECTURER;
+        return auth()->user()->user_type == UserType::OPERATOR;
     }
 
     /**
@@ -23,8 +25,8 @@ class StoreCourseClassRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'class_code'=> 'required|string|size:8|unique:course_classes,class_code',
-            'day'=> 'required|string|max:10|min:4',
+            'class_code'=> 'required|string|min:1|max:5',
+            'day'=> ['required','string','max:10','min:4',Rule::enum(DayType::class)],
             'class_participants'=> 'required|numeric|min:1|max:500',
             'semester'=> 'required|numeric|min:1|max:14',
             'course_id'=>'required|integer|exists:courses,id',

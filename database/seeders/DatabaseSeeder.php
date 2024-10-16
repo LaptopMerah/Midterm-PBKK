@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-  
+
         DB::beginTransaction();
         try {
 
@@ -45,6 +45,14 @@ class DatabaseSeeder extends Seeder
                 'phone_number' => '081234567890',
                 'password' => bcrypt('password'),
                 'user_type' => 'student',
+            ]);
+            User::create([
+                'name' => 'Operator Ganteng',
+                'email' => 'og@mail.com',
+                'identifier_number' => '1234567891',
+                'phone_number' => '081234567892',
+                'password' => bcrypt('password'),
+                'user_type' => 'operator',
             ]);
         } catch (\Exception $exception) {
             DB::rollBack();

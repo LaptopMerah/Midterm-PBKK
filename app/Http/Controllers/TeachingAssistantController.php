@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\UserType;
 use App\Models\CourseClass;
 use App\Models\TeachingAssistant;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreTeachingAssistantRequest;
 use App\Http\Requests\UpdateTeachingAssistantRequest;
@@ -16,9 +17,15 @@ class TeachingAssistantController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         $registrations = TeachingAssistant::where('user_id', auth()->user()->id)->get();
         return view('dashboard.student.registration.index', compact('registrations'));
+    }
+
+    public function lectureTeachingAssistantIndex(){
+        $data = User::where('id',auth()->user()->id)->firstOrFail();
+
+        dd($data->lecturer_class);
     }
 
     /**

@@ -104,14 +104,14 @@ class UserFactory extends Factory
         ];
 
         $lecturers = [];
-        
+
         foreach ($names as $name) {
             $lecturers[] = [
                 'name' => $name,
                 'email' => $this->faker->unique()->safeEmail(),
                 'identifier_number' => $this->faker->unique()->numerify('ID######'),
                 'user_type' => 'lecturer',
-                'phone_number' => $this->faker->unique()->phoneNumber(),
+                'phone_number' => $this->faker->unique()->regexify('[0-9]{11}'),
                 'password' => static::$password ??= Hash::make('password'),
                 'remember_token' => Str::random(10),
             ];

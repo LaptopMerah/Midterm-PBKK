@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('academic_year_id')->constrained('academic_years', 'id');
             $table->foreignId('time_shift_id')->constrained('time_shifts', 'id');
             $table->timestamps();
-            $table->unique(['class_code', 'course_id']);
+            $table->unique(['class_code', 'course_id', 'academic_year_id']);
         });
     }
 

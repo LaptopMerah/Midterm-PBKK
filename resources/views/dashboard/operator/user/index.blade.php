@@ -113,7 +113,10 @@
                                         class=""
                                     >
                                         <a href="{{route('operator.user-management.edit',$data->id)}}">
-                                            <x-button type="warning">View Detail</x-button>
+                                            <x-button type="warning">Detail</x-button>
+                                        </a>
+                                        <a href="{{route('operator.user-management.destroy',$data->id)}}" data-confirm-delete="true">
+                                            <x-button type="danger">Delete</x-button>
                                         </a>
                                     </td>
                                 </tr>

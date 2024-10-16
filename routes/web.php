@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\UserType;
+use App\Http\Controllers\CourseClassController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeachingAssistantController;
 use App\Http\Controllers\UserManagementController;
@@ -44,13 +45,20 @@ Route::middleware(['auth', 'user_type:operator'])->prefix('operator')->group(fun
     })->name('operator.dashboard');
     Route::resource('user-management', UserManagementController::class)->names('operator.user-management');
 
-    Route::resource('class',\App\Http\Controllers\CourseClassController::class)->names('operator.class');
+    Route::get('/class/add-lecture-to-class',[CourseClassController::class,'addLecture'])->name('add.lecture.to.class');
+    Route::post('/class/add-lecture-to-class',[CourseClassController::class,'storeLecture'])->name('add.lecture');
+    Route::get('/class/add-lecture-to-class/{course_class:id}',[CourseClassController::class,'editLecture'])->name('edit.lecture');
+    Route::put('/class/add-lecture-to-class/{course_class:id}',[CourseClassController::class,'updateLecturer'])->name('update.lecture');
+    Route::resource('class',\App\Http\Controllers\CourseClassController::class)->names('operator.class')->except('show');
+
 });
 
 Route::middleware(['auth', 'user_type:lecturer'])->prefix('lecturer')->group(function () {
     Route::get('', function () {
         return view('dashboard.lecturer.index');
     })->name('lecture.dashboard');
+
+    Route::get('/teaching-assistant', [TeachingAssistantController::class, 'lectureTeachingAssistantIndex'])->name('lecture.teaching-assistant');
 });
 
 require __DIR__ . '/auth.php';

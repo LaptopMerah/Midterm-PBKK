@@ -19,6 +19,9 @@ class UserManagementController extends Controller
     public function index():View
     {
         $datum = User::filter(request(['search']))->latest()->paginate(10)->withQueryString();
+        $title = 'Delete User';
+        $text = "Do you really want to delete this user from application?";
+        confirmDelete($title, $text);
         return view('dashboard.operator.user.index', compact('datum'));
     }
 
