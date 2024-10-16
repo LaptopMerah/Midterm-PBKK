@@ -29,6 +29,14 @@
                         <span class="ms-3">User Management</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/operator/class"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                    {{ request()->is('operator/class*') ? 'bg-gray-300 hover:border hover:border-gray-300 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <x-feathericon-user />
+                        <span class="ms-3">Class Data</span>
+                    </a>
+                </li>
             @endif
         </ul>
     </div>

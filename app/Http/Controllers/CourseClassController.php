@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use App\Models\CourseClass;
 use App\Http\Requests\StoreCourseClassRequest;
 use App\Http\Requests\UpdateCourseClassRequest;
+use App\Models\TimeShift;
 
 class CourseClassController extends Controller
 {
@@ -13,7 +15,9 @@ class CourseClassController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.operator.class.index', [
+            'courseClasses' => CourseClass::latest()->paginate(10)
+        ]);
     }
 
     /**
@@ -21,7 +25,10 @@ class CourseClassController extends Controller
      */
     public function create()
     {
-        //
+        $courses = CourseClass::all();
+        $academicYears = AcademicYear::all();
+        $timeShifts = TimeShift::all();
+        return view('dashboard.operator.class.create', compact('courses', 'academicYears', 'timeShifts'));
     }
 
     /**
