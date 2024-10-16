@@ -24,9 +24,9 @@ class StoreTeachingAssistantRequest extends FormRequest
     {
         return [
             'class_id' => 'required|integer|exists:course_classes,id',
-            'gpa' => 'required|decimal:1|min:0|max:4',
+            'gpa' => 'required|decimal:2|min:0|max:4',
             'is_available' => 'required|boolean',
-            'lecturer_recommendation_id'=>'nullable|integer|exists:lecturer_recommendations,id',
+            'lecturer_recommendation_id'=>'nullable|integer|exists:lecturers,id',
             'recommendation_proof'=>'required_with:lecturer_recommendation_id|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

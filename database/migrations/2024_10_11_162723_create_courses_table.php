@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->char('course_code', 8)->unique();
             $table->integer('semester');
             $table->integer('credit');
             $table->boolean('is_practicum')->default(false);

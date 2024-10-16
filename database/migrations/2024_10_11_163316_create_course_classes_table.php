@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('course_classes', function (Blueprint $table) {
             $table->id();
-            $table->char('class_code', 8)->unique();
+            $table->string('class_code', 5);
             $table->string('day', 10);
             $table->integer('class_participant');
             $table->integer('semester');
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('academic_year_id')->constrained('academic_years', 'id');
             $table->foreignId('time_shift_id')->constrained('time_shifts', 'id');
             $table->timestamps();
+            $table->unique(['class_code', 'course_id']);
         });
     }
 

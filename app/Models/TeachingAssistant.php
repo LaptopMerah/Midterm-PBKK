@@ -47,6 +47,6 @@ class TeachingAssistant extends Model
 
     public function lecturer_recommendation(): BelongsTo
     {
-        return $this->belongsTo(Lecturer::class, 'lecturer_recommendation_id', 'id');
+        return $this->belongsTo(Lecturer::class, 'lecturers', 'id');
     }
 }

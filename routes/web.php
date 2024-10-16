@@ -25,9 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/class-list', function () {
-        return view('class-list');
-    });
+        return view('class-list',['classes' => \App\Models\CourseClass::all()]);
+    })->name('class-list');
 });
 
 Route::middleware(['auth', 'user_type:student'])->prefix('student')->group(function () {

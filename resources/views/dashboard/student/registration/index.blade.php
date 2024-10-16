@@ -9,12 +9,15 @@
                 </span>
             </div>
             <div class="w-full lg:w-1/2 flex flex-col sm:flex-row-reverse gap-2 items-center">
-                <button
+                <a href="{{ route('class-list') }}">
+
+                    <button
                     type="button"
                     class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full sm:w-auto font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-                >
+                    >
                     Buat baru
                 </button>
+            </a>
                 <form method="get" action="" class="sm:flex items-center w-full sm:max-w-md lg:min-w-max">
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
                         Search
@@ -104,43 +107,53 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800">
-                            {{-- @foreach ( as ) --}}
+                                @foreach ( $registrations as $registration)
                             <tr>
                                 <td
                                     class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white"
                                 >
-                                    Pemrograman Web
+                                    {{ $registration->class->course->name }} - {{ $registration->class->class_code }}
                                 </td>
                                 <td
-                                    class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
-                                >
-                                    Arya Gading, S.Kom
+                                class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                @foreach ($registration->class->lecturer_user as $item)               
+                                    {{ $item->name }}<br/>
+                                    @endforeach
                                 </td>
                                 <td
-                                    class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white"
+                                    class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-white"
                                 >
-                                    EF234104
+                                    {{ $registration->class->course->course_code }}
                                 </td>
 
                                 <td
                                     class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400"
                                 >
-                                    <span>2024/2025</span>
+                                    <span>{{ $registration->class->academic_year->name }}</span>
                                 </td>
                                 <td class="p-4 whitespace-nowrap">
+                                    @if ($registration->is_accepted)
                                         <span
                                             class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500"
                                         >
                                             Accepted
                                         </span>
+                                    @else
+                                        <span
+                                            class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-red-400 border border-red-100 dark:border-red-500"
+                                        >
+                                            Pending
+                                        </span>
+                                    @endif
                                 </td>
+                                
                                 <td
                                     class=""
                                 >
                                     <x-button type="warning"  >View Detail</x-button>
                                 </td>
                             </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
