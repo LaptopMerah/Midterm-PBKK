@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('identifier_number', 20)->unique();
             $table->enum('user_type', ['student', 'lecturer','operator']);
+            $table->string('phone_number', 15)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

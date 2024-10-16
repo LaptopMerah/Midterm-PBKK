@@ -12,8 +12,15 @@
         <!-- Identifier Number (NRP) -->
         <div class="mt-4">
             <x-input-label for="identifier_number" :value="__('Identifier Number')" />
-            <x-text-input id="identifier_number" class="block mt-1 w-full" type="number" max_length="10" name="identifier_number" :value="old('identifier_number')" required />
+            <x-text-input id="identifier_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" name="identifier_number" :value="old('identifier_number')" required />
             <x-input-error :messages="$errors->get('identifier_number')" class="mt-2" />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mt-4">
+            <x-input-label for="phone_number" :value="__('Phone Number')" />
+            <x-text-input id="phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{10-15}" maxlength="15" minlength="10" name="phone_number" :value="old('phone_number')" required />
+            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

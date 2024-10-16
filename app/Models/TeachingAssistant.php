@@ -12,6 +12,15 @@ class TeachingAssistant extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    protected function casts(): array
+    {
+        return [
+            'gpa' => 'decimal:1',
+            'is_available' => 'boolean',
+            'is_accepted' => 'boolean',
+        ];
+    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -34,5 +43,10 @@ class TeachingAssistant extends Model
             'teaching_assistant_id',
             'id'
         );
+    }
+
+    public function lecturer_recommendation(): BelongsTo
+    {
+        return $this->belongsTo(Lecturer::class, 'lecturer_recommendation_id', 'id');
     }
 }

@@ -33,7 +33,8 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'identifier_number'=>'required|numeric|min_digits:10|max_digits:20|unique:users,identifier_number',
+            'identifier_number'=>'required|numeric|min_digits:10|max_digits:10|unique:users,identifier_number',
+            'phone_number'=>'required|numeric|min_digits:10|max_digits:15|unique:users,phone_number',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -41,6 +42,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'identifier_number'=> $request->identifier_number,
+            'phone_number'=>$request->phone_number,
             'password' => Hash::make($request->password),
             'user_type'=>UserType::STUDENT
         ]);
