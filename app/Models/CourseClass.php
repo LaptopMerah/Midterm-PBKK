@@ -17,7 +17,7 @@ class CourseClass extends Model
 
     public function lecturer_user(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'lecturers','class_id','users_id')->using(Lecturer::class);
+        return $this->belongsToMany(User::class,'lecturers','class_id','users_id')->using(Lecturer::class)->withPivot('id');
     }
     public function teaching_assistant(): HasMany
     {
@@ -33,6 +33,6 @@ class CourseClass extends Model
     }
     public function time_shift(): BelongsTo
     {
-        return $this->belongsTo(Course::class, 'time_shift_id', 'id');
+        return $this->belongsTo(TimeShift::class, 'time_shift_id', 'id');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
+use App\Models\CourseClass;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,14 +22,34 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+  
         DB::beginTransaction();
-        try{
-        $this->call([
-            TimeShiftSeeder::class,
-        ]);
-        }catch (\Exception $exception) {
+        try {
+
+            $lecturers = User::factory()->allLecturers();
+            foreach ($lecturers as $lecturer) {
+                User::create($lecturer);
+            }
+            $this->call([
+                TimeShiftSeeder::class,
+                AcademicYearSeeder::class,
+                CourseSeeder::class,
+                CourseClassSeeder::class,
+
+            ]);
+            User::create([
+                'name' => 'UsersAja',
+                'email' => 'g@mail.com',
+                'identifier_number' => '1234567890',
+                'phone_number' => '081234567890',
+                'password' => bcrypt('password'),
+                'user_type' => 'student',
+            ]);
+        } catch (\Exception $exception) {
             DB::rollBack();
-            error_log($exception->getMessage());
+            throw $exception;
+            // error_log($exception->getMessage());
         }
         DB::commit();
     }
