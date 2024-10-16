@@ -66,7 +66,7 @@ class User extends Authenticatable
     }
 
     public function lecturer_class():BelongsToMany{
-        return $this->belongsToMany(CourseClass::class)->using(Lecturer::class );
+        return $this->belongsToMany(CourseClass::class,'lecturers','users_id','class_id')->using(Lecturer::class );
     }
     public function teaching_assistant():HasMany{
         return $this->hasMany(TeachingAssistant::class,'user_id');

@@ -17,7 +17,7 @@ class CourseClass extends Model
 
     public function lecturer_user(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->using(Lecturer::class );
+        return $this->belongsToMany(User::class,'lecturers','class_id','users_id')->using(Lecturer::class);
     }
     public function teaching_assistant(): HasMany
     {

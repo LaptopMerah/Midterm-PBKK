@@ -42,6 +42,8 @@ Route::middleware(['auth', 'user_type:operator'])->prefix('operator')->group(fun
         return view('dashboard.operator.index');
     })->name('operator.dashboard');
     Route::resource('user-management', UserManagementController::class)->names('operator.user-management');
+
+    Route::resource('class',\App\Http\Controllers\CourseClassController::class)->names('operator.class');
 });
 
 Route::middleware(['auth', 'user_type:lecturer'])->prefix('lecturer')->group(function () {
