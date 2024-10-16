@@ -18,7 +18,7 @@
 </head>
 <body class="font-jakarta-sans">
 <x-dashboard-navbar/>
-<section class="sm:flex pt-16 ">
+<section class="sm:flex pt-12">
     <x-side-bar class="sm:non-fixed w-full sm:w-1/4 lg:w-1/5"/> <!-- Sidebar with responsive width -->
     <main class="flex-grow w-full h-full overflow-y-auto sm:w-3/4 lg:w-4/5 m-4 sm:m-10 px-4 sm:px-6">
         {{ $slot }}

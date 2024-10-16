@@ -18,7 +18,7 @@
 </head>
 <body class="font-jakarta-sans">
 <x-navbar/>
-<section class="sm:flex pt-16 ">
+<section class="sm:flex pt-12">
 {{--    @if($isIncludeSidebar)--}}
 {{--        <x-side-bar class="sm:non-fixed w-full sm:w-1/4 lg:w-1/5"/> <!-- Sidebar with responsive width -->--}}
 {{--    @endif--}}

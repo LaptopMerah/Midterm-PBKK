@@ -17,7 +17,7 @@ class UserManagementController extends Controller
      */
     public function index():View
     {
-        $datum = User::filter(request(['search']))->latest()->paginate(1)->withQueryString();
+        $datum = User::filter(request(['search']))->latest()->paginate(10)->withQueryString();
         return view('dashboard.operator.user.index', compact('datum'));
     }
 
