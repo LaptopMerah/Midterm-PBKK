@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('date');
             $table->boolean('is_confirmed')->default(false);
-            $table->foreignId('lecture_confirmation_id')->constrained('lecturers', 'id');
+            $table->foreignId('lecture_confirmation_id')->nullable()->constrained('lecturers', 'id');
             $table->dateTime('confirmed_at')->nullable();
             $table->timestamps();
         });

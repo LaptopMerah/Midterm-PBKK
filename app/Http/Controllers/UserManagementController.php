@@ -17,7 +17,8 @@ class UserManagementController extends Controller
      */
     public function index():View
     {
-        //
+        $datum = User::filter(request(['search']))->latest()->paginate(1)->withQueryString();
+        return view('dashboard.operator.user.index', compact('datum'));
     }
 
     /**
@@ -25,7 +26,8 @@ class UserManagementController extends Controller
      */
     public function create():View
     {
-        //
+        $userType = UserType::getValues();
+        return view('dashboard.operator.user.create', compact('userType'));
     }
 
     /**

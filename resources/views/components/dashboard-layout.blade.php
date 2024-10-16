@@ -2,7 +2,7 @@
     'webTitle' => '',
 ])
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +17,9 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="font-jakarta-sans">
-<x-navbar/>
+<x-dashboard-navbar/>
 <section class="sm:flex pt-16 ">
-{{--    @if($isIncludeSidebar)--}}
-{{--        <x-side-bar class="sm:non-fixed w-full sm:w-1/4 lg:w-1/5"/> <!-- Sidebar with responsive width -->--}}
-{{--    @endif--}}
+    <x-side-bar class="sm:non-fixed w-full sm:w-1/4 lg:w-1/5"/> <!-- Sidebar with responsive width -->
     <main class="flex-grow w-full h-full overflow-y-auto sm:w-3/4 lg:w-4/5 m-4 sm:m-10 px-4 sm:px-6">
         {{ $slot }}
     </main>

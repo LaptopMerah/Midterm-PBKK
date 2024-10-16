@@ -6,6 +6,7 @@ use App\Models\Lecturer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CourseClass extends Model
@@ -14,15 +15,14 @@ class CourseClass extends Model
 
     protected $guarded = ['id'];
 
-    public function lecturer(): HasMany
+    public function lecturer_user(): BelongsToMany
     {
-        return $this->hasMany(Lecturer::class, 'class_id', 'id');
+        return $this->belongsToMany(User::class)->using(Lecturer::class );
     }
     public function teaching_assistant(): HasMany
     {
         return $this->hasMany(TeachingAssistant::class, 'class_id', 'id');
     }
-
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');

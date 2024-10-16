@@ -14,7 +14,7 @@ class TeachingAssistantController extends Controller
      */
     public function index()
     {
-        return view('user.pendaftaran.index');
+        return view('dashboard.student.registration.index');
     }
 
     /**

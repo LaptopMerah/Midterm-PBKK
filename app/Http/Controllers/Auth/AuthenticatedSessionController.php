@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
@@ -28,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if (auth()->user()->user_type == UserType::STUDENT) {
+            return redirect()->intended(route('student.dashboard', absolute: false));
+        } else if (auth()->user()->user_type == UserType::LECTURER) {
+            return redirect()->intended(route('lecture.dashboard', absolute: false));
+        }
+        return redirect()->intended(route('operator.dashboard', absolute: false));
     }
 
     /**
