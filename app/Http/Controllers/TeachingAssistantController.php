@@ -24,10 +24,26 @@ class TeachingAssistantController extends Controller
     }
 
     public function lectureTeachingAssistantIndex(){
-        $data = User::where('id', Auth::id())->firstOrFail();
+       $data = auth()->user()->lecturer_class;
 
-        dd($data->lecturer_class);
+       return view('dashboard.lecturer.teaching-assistant.index', compact('data'));
     }
+
+    public function lectureTeachingAssistantData(CourseClass $course_class){
+        return view('dashboard.lecturer.teaching-assistant.data', compact('course_class'));
+    }
+
+    public function lectureTeachingAssistantDetail(TeachingAssistant $teaching_assistant){
+        return view('dashboard.lecturer.teaching-assistant.detail', compact('teaching_assistant'));
+    }
+
+    public function acceptTeachingAssistant(TeachingAssistant $teaching_assistant){
+        $teaching_assistant->update([
+            'is_accepted' => true,
+        ]);
+
+        return back()->with('success','Teaching Assistant Accepted!');
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -74,7 +90,7 @@ class TeachingAssistantController extends Controller
             $teachingAssistant->gpa = $request['gpa'];
             $teachingAssistant->is_available = $request['is_available'];
             $teachingAssistant->lecturer_recommendation_id = $request['lecturer_recommendation_id'];
-            $teachingAssistant->recommendation_proof = $recommendation_proof;
+            $teachingAssistant->recommendation_proof = $recommendation_proof ?? '';
             $teachingAssistant->save();
 
             DB::commit();

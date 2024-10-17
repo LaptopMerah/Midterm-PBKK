@@ -30,7 +30,14 @@
                     </a>
                 </li>
             @elseif(auth()->user()->user_type == \App\Enums\UserType::LECTURER)
-
+                <li>
+                    <a href="/lecturer/teaching-assistant"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                    {{ request()->is('lecturer/teaching-assistant*') ? 'bg-gray-300 hover:border hover:border-gray-300 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <x-feathericon-user />
+                        <span class="ms-3">Teaching Assistant</span>
+                    </a>
+                </li>
             @elseif(auth()->user()->user_type == \App\Enums\UserType::OPERATOR)
                 <li>
                     <a href="/operator/user-management"

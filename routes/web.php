@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
         }
         return redirect()->intended(route('operator.dashboard', absolute: false));
     })->name('dashboard');
-    
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -65,6 +65,9 @@ Route::middleware(['auth', 'user_type:lecturer'])->prefix('lecturer')->group(fun
     })->name('lecture.dashboard');
 
     Route::get('/teaching-assistant', [TeachingAssistantController::class, 'lectureTeachingAssistantIndex'])->name('lecture.teaching-assistant');
+    Route::get('teaching-assistant/{course_class:id}',[TeachingAssistantController::class,'lectureTeachingAssistantData'])->name('lecture.teaching-assistant.data');
+    Route::get('teaching-assistant/data/{teaching_assistant:id}',[TeachingAssistantController::class,'lectureTeachingAssistantDetail'])->name('lecture.teaching-assistant.detail');
+    Route::post('teaching-assistant/data/{teaching_assistant:id}',[TeachingAssistantController::class,'acceptTeachingAssistant'])->name('teaching.assistant.accept');
 });
 
 require __DIR__ . '/auth.php';
