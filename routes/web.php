@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\UserType;
+use App\Http\Controllers\AcceptLogController;
 use App\Http\Controllers\CourseClassController;
 use App\Models\TeachingAssistantLog;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,10 @@ Route::middleware(['auth', 'user_type:lecturer'])->prefix('lecturer')->group(fun
     Route::get('teaching-assistant/{course_class:id}',[TeachingAssistantController::class,'lectureTeachingAssistantData'])->name('lecture.teaching-assistant.data');
     Route::get('teaching-assistant/data/{teaching_assistant:id}',[TeachingAssistantController::class,'lectureTeachingAssistantDetail'])->name('lecture.teaching-assistant.detail');
     Route::post('teaching-assistant/data/{teaching_assistant:id}',[TeachingAssistantController::class,'acceptTeachingAssistant'])->name('teaching.assistant.accept');
+
+    Route::get('/class', [AcceptLogController::class, 'class'])->name('lecture.class');
+    Route::resource('/log-acceptance', AcceptLogController::class)->names('lecture.log-acceptance');
+
 });
 
 require __DIR__ . '/auth.php';

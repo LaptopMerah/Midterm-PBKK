@@ -38,6 +38,14 @@
                         <span class="ms-3">Teaching Assistant</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/lecturer/class"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white
+                    {{ request()->is('lecturer/class') ? 'bg-gray-300 hover:border hover:border-gray-300 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <x-feathericon-user />
+                        <span class="ms-3">My Class</span>
+                    </a>
+                </li>
             @elseif(auth()->user()->user_type == \App\Enums\UserType::OPERATOR)
                 <li>
                     <a href="/operator/user-management"

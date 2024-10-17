@@ -9,6 +9,7 @@ class Lecturer extends Pivot
 {
     public $incrementing = true;
 
+    protected $table = 'lecturers';
     public function ta_registration(): HasMany
     {
         return $this->hasMany(TeachingAssistant::class, 'lecturer_recommendation_id', 'id');
